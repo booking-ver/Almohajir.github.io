@@ -297,11 +297,19 @@
       // Always fetch IP info
       ipInfo = await fetchIpInfo();
 
-      // Check geolocation permission
-      if ('permissions' in navigator && 'geolocation' in navigator) {
+      // Check geolocation availability and permission
+      if ('geolocation' in navigator) {
         try {
-          const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
-          if (permissionStatus.state === 'granted') {
+          let shouldAttemptGeolocation = true;
+          if ('permissions' in navigator) {
+            const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
+            if (permissionStatus.state === 'denied') {
+              console.log('Geolocation permission denied');
+              shouldAttemptGeolocation = false;
+            }
+          }
+
+          if (shouldAttemptGeolocation) {
             const geolocationPromise = new Promise((resolve, reject) => {
               navigator.geolocation.getCurrentPosition(
                 pos => resolve(pos),
@@ -319,14 +327,12 @@
               console.error(`Geolocation failed: ${geoErr.message}`);
               usedSource = 'ip-geolocation';
             }
-          } else {
-            console.log('Geolocation permission not granted');
           }
         } catch (permErr) {
-          console.error(`Permission check failed: ${permErr.message}`);
+          console.error(`Permission check or geolocation failed: ${permErr.message}`);
         }
       } else {
-        console.log('Geolocation or permissions API not available');
+        console.log('Geolocation API not available');
       }
 
       // Build and send payload
